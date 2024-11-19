@@ -122,6 +122,18 @@ app.post('/save', (req, res) => {
 
 })
 
+app.get('/getLeaderboard', (req, res) => {
+
+    con.query('SELECT username, highScore FROM users ORDER BY highScore DESC;',(err, results) => {
+            if (err) {
+                return res.status(400).json(err)
+            }
+
+
+            return res.status(200).json(results)
+    })
+})
+
   
 
 app.listen(3001, () => {
